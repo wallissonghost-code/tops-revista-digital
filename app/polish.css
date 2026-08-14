@@ -1,0 +1,89 @@
+/* DEU CAPA. — revisão de estabilidade e responsividade */
+html,body{max-width:100%;overflow-x:clip}
+body{-webkit-text-size-adjust:100%;text-rendering:optimizeLegibility}
+a,button{-webkit-tap-highlight-color:transparent}
+.header,.sectionNav{will-change:transform;-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
+.magazine,.cover,.inside,.turningSheet,.sheetFace{backface-visibility:hidden;-webkit-backface-visibility:hidden;transform-style:preserve-3d}
+.magazineStage{isolation:isolate}
+.nav a,.sectionNav a,.outlineButton,.goldButton,.textLink{touch-action:manipulation}
+
+/* Navegação das páginas internas */
+.sectionNav{border-bottom:1px solid rgba(200,164,105,.22)}
+.sectionNav nav a{padding:12px 2px;min-height:40px;display:flex;align-items:center}
+
+/* Leitura e cards com área de toque mais confortável */
+.story>a,.editorialCards a,.agendaList article>a{display:inline-flex;min-height:40px;align-items:center}
+.photo,.galleryMosaic figure,.publishedAlbums figure{transform:translateZ(0)}
+
+/* Admin */
+.controlRoom{overflow-x:hidden}
+.controlRoom aside nav a,.crBottom a{min-height:42px;display:flex;align-items:center}
+.crMain>header{position:sticky;top:0;z-index:45;background:rgba(10,9,8,.96);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+
+@media(max-width:950px){
+  .header{position:sticky;top:0;background:#070706;-webkit-backdrop-filter:none;backdrop-filter:none}
+  .nav.open{max-height:calc(100vh - 72px);overflow:auto;padding-bottom:max(30px,env(safe-area-inset-bottom))}
+  .nav a{width:100%;min-height:44px;display:flex;align-items:center;border-bottom:1px solid rgba(200,164,105,.12)}
+  .hero{min-height:auto}
+  .magazineStage{padding-left:0;padding-right:0;width:100%}
+  .magazine{width:min(100%,760px);transform:none;filter:drop-shadow(0 24px 28px #000)}
+  .arrow{display:none}
+  .dragHint{display:block;text-align:center;margin-top:16px;color:#8b7d66;font-size:7px;letter-spacing:.24em}
+  .pageCounter{margin-top:10px}
+  .reader{padding:18px}
+  .readerBook{width:100%;height:min(76vh,640px)}
+  .readerArrow{display:none}
+  .readerClose{right:12px;top:8px;z-index:3}
+  .crMain>header{-webkit-backdrop-filter:none;backdrop-filter:none;background:#0a0908}
+}
+
+@media(max-width:760px){
+  .sectionNav{-webkit-backdrop-filter:none;backdrop-filter:none;background:#080807}
+  .sectionNav nav{gap:10px;min-width:0}
+  .sectionNav nav a{font-size:6px;letter-spacing:.12em;white-space:nowrap}
+  .galleryMosaic{grid-auto-rows:220px}
+  .publishedAlbums article{gap:26px}
+  .publishedAlbums figure{height:min(105vw,430px)}
+  .albumStrip{overflow-x:auto;grid-template-columns:repeat(5,74px);padding-bottom:5px;scrollbar-width:none}
+  .albumStrip::-webkit-scrollbar{display:none}
+  .albumStrip img{height:74px}
+  .sectionFooter{flex-wrap:wrap;align-items:flex-start}
+  .sectionFooter a{min-height:40px;display:flex;align-items:center}
+}
+
+@media(max-width:560px){
+  .brand{min-width:0}
+  .brandWords small{display:none}
+  .sectionNav>a:first-child span{display:none}
+  .sectionNav nav a:first-child{display:none}
+  .heroStats{width:100%;display:grid;grid-template-columns:repeat(3,1fr)}
+  .heroStats span{display:flex;flex-direction:column;align-items:flex-start;padding:0 10px;gap:5px}
+  .heroStats b{font-size:22px}
+  .heroStats small{font-size:5px}
+  .magazine{aspect-ratio:1.38}
+  .cover{padding:16px}
+  .inside{padding:7%}
+  .coverHeadlines{display:none}
+  .coverTitle{font-size:24px}
+  .coverLogo{font-size:38px}
+  .inside h2{font-size:28px}
+  .inside>p{font-size:9px;line-height:1.5}
+  .photoGrid{height:auto!important;grid-template-columns:1fr 1fr!important;grid-auto-rows:230px}
+  .photoGrid .photo{height:auto!important;align-self:stretch!important}
+  .advertise{margin-left:14px;margin-right:14px;padding:38px 20px}
+  .crStats article{padding:18px 14px}
+  .crStats b{font-size:29px}
+  .crModules>a{padding:22px;min-height:190px}
+}
+
+/* Safari/iOS: reduz camadas fixas/translúcidas que causam piscadas durante scroll */
+@supports(-webkit-touch-callout:none){
+  body:before{display:none}
+  .header,.sectionNav,.crMain>header{-webkit-backdrop-filter:none;backdrop-filter:none}
+  .magazine,.photo,.galleryMosaic figure,.publishedAlbums figure{will-change:auto}
+}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
