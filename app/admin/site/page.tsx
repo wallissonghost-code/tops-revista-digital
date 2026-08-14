@@ -1,0 +1,1 @@
+import {redirect} from "next/navigation";import {requireChatGPTUser} from "../../chatgpt-auth";import SiteEditor from "./SiteEditor";import "./site-editor.css";export const dynamic="force-dynamic";export default async function SiteAdmin(){const user=await requireChatGPTUser("/admin/site");if(user.email.toLowerCase()!=="wallissonghost@gmail.com")redirect("/");return <SiteEditor/>}

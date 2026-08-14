@@ -1,0 +1,2 @@
+"use client";
+export default function ShareButtons({title}:{title:string}){function share(){if(navigator.share)navigator.share({title,url:location.href});else navigator.clipboard.writeText(location.href).then(()=>alert("Link copiado"))}return <div className="shareButtons"><button onClick={share}>COMPARTILHAR ↗</button><a href={`https://wa.me/?text=${encodeURIComponent(title)}`} onClick={e=>{e.currentTarget.href=`https://wa.me/?text=${encodeURIComponent(title+" "+location.href)}`}} target="_blank">WHATSAPP</a></div>}

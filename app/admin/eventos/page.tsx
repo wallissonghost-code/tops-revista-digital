@@ -1,0 +1,1 @@
+import {redirect} from "next/navigation";import {requireChatGPTUser} from "../../chatgpt-auth";import EventManager from "./EventManager";import "../manager.css";export const dynamic="force-dynamic";export default async function Page(){const u=await requireChatGPTUser("/admin/eventos");if(u.email.toLowerCase()!=="wallissonghost@gmail.com")redirect("/");return <EventManager/>}
